@@ -1,0 +1,19 @@
+---
+name=cluster_name
+short=c
+description=ECS Cluster Name
+---
+name=family_name
+short=f
+description=ECS Task Family Name
+---
+name=reason
+short=r
+default=Restart
+description=Reason for stopping the task for audit trail
+---
+name=bargs
+description=bash main.sh -c my-cluster -f my-task-family
+default=irrelevant
+---
+---
