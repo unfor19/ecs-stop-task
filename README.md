@@ -1,11 +1,27 @@
 # ecs-stop-task
 
-In development environments there's usually have only one ECS Task, and sometimes a developer might want to restart this ECS task. This script is useful for "restarting" ECS Tasks, assuming there's an ECS Service which makes sure the desired ECS Task number is one (1)
+In development environments there's usually only one ECS Task, and sometimes a developer might want to restart this ECS task. This script is useful for restarting (stopping) ECS Tasks, assuming there's an ECS Service which makes sure the desired ECS Task number is one (1)
 
 ## Requirements
 
-- IAM permissions - [iam_policy.json](./iam_policy.json)
-- [jq](https://stedolan.github.io/jq/)
+IAM permissions - [iam_policy.json](./iam_policy.json)
+```json
+  
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["ecs:ListTasks", "ecs:StopTask"],
+      "Resource": [
+        "arn:aws:ecs:${AWS_REGION}:${ACCOUNT_IT}:container-instance/*",
+        "arn:aws:ecs:${AWS_REGION}:${ACCOUNT_IT}:task/*"
+      ]
+    }
+  ]
+}
+```
+
 
 ## Usage
 
@@ -38,6 +54,7 @@ _NOTE_: aws-vault users need to add
 
 ### From Source
 
+1. Download and install [jq](https://stedolan.github.io/jq/)
 1. Clone this repo
 1. Stop (restart) the task
    ```bash
