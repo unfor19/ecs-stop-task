@@ -1,8 +1,4 @@
-FROM amazon/aws-cli:2.0.34
-RUN yum update -y && \
-    yum install -y jq util-linux-ng && \
-    yum clean all && \
-    rm -rf /var/cache/yum
+FROM unfor19/alpine-ci:awscli-latest-aef23938
 WORKDIR /code
 COPY . .
 ENTRYPOINT [ "bash", "main.sh" ]
